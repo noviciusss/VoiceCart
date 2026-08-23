@@ -22,19 +22,41 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.responses import Response, JSONResponse
+
+# Global middleware to ensure CORS headers on ALL responses (including errors and preflight)
+@app.middleware("http")
+async def universal_cors_middleware(request, call_next):
+    if request.method == "OPTIONS":
+        response = Response(status_code=200)
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS, PATCH, HEAD"
+        response.headers["Access-Control-Allow-Headers"] = "*"
+        response.headers["Access-Control-Max-Age"] = "86400"
+        return response
+
+    try:
+        response = await call_next(request)
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        response = JSONResponse(
+            status_code=500,
+            content={"detail": f"Internal Server Error: {str(exc)}"}
+        )
+
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS, PATCH, HEAD"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    return response
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://voice-cart-chi.vercel.app",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:8000",
-    ],
-    allow_origin_regex=r"^https:\/\/.*\.vercel\.app$",
+    allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["*"],
 )
 
 app.include_router(command.router)
