@@ -1,0 +1,22 @@
+{
+  "milk":        ["almond milk", "oat milk", "soy milk", "coconut milk"],
+  "butter":      ["margarine", "coconut oil", "ghee", "olive oil"],
+  "eggs":        ["flax eggs", "chia eggs", "tofu scramble"],
+  "sugar":       ["honey", "maple syrup", "jaggery", "stevia"],
+  "flour":       ["almond flour", "oat flour", "whole wheat flour"],
+  "bread":       ["pita bread", "tortillas", "rice cakes"],
+  "rice":        ["quinoa", "cauliflower rice", "couscous", "millet"],
+  "pasta":       ["rice noodles", "zucchini noodles", "whole wheat pasta"],
+  "chicken":     ["tofu", "paneer", "chickpeas", "tempeh"],
+  "beef":        ["lamb", "lentils", "black beans", "mushrooms"],
+  "cream":       ["coconut cream", "cashew cream", "evaporated milk"],
+  "yogurt":      ["coconut yogurt", "almond yogurt", "soy yogurt"],
+  "cheese":      ["nutritional yeast", "cashew cheese", "paneer"],
+  "olive oil":   ["sunflower oil", "avocado oil", "coconut oil"],
+  "potato":      ["sweet potato", "cauliflower", "turnip"],
+  "tomato":      ["canned tomatoes", "tomato paste", "sun-dried tomatoes"],
+  "onion":       ["shallots", "leeks", "green onion"],
+  "garlic":      ["garlic powder", "asafoetida", "shallots"],
+  "lemon":       ["lime", "orange zest", "white vinegar"],
+  "coffee":      ["chicory coffee", "matcha", "chai tea", "green tea"]
+}
